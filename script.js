@@ -116,25 +116,92 @@ if (galleryGrid) {
   const { galleryOwner: owner, galleryRepo: repo, galleryPath: path, galleryAlt: altText } = galleryGrid.dataset;
   const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp|gif)$/i;
 
+  // Hány oszlopba rendezzük a képeket az aktuális ablakszélesség alapján
+  // (ugyanazok a töréspontok, mint a többi reszponzív elemnél).
+  const getColumnCount = () => {
+    const width = window.innerWidth;
+    if (width < 480) return 1;
+    if (width < 768) return 2;
+    return 4;
+  };
+
+  // Valódi (hézagmentes) masonry: minden képet mindig az aktuálisan
+  // legalacsonyabb oszlophoz adunk hozzá. A "magasságot" nem a tényleges
+  // képpontban mért magassággal számoljuk (az képenként változna az
+  // oszlopszélességtől függően), hanem a kép saját magasság/szélesség
+  // arányával - mivel minden oszlop egyforma széles, ez pontosan
+  // arányos a végleges renderelt magassággal.
+  const layoutMasonry = (loadedImages) => {
+    const columnCount = getColumnCount();
+    galleryGrid.innerHTML = '';
+    const columns = [];
+    for (let i = 0; i < columnCount; i++) {
+      const col = document.createElement('div');
+      col.className = 'gallery-column';
+      galleryGrid.appendChild(col);
+      columns.push({ el: col, height: 0 });
+    }
+
+    loadedImages.forEach(({ img, ratio }) => {
+      const shortest = columns.reduce((a, b) => (a.height <= b.height ? a : b));
+      shortest.el.appendChild(img);
+      shortest.height += ratio;
+    });
+  };
+
   fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`)
     .then(res => (res.ok ? res.json() : Promise.reject(new Error('GitHub API error'))))
     .then(files => {
-      const images = files
+      const imageFiles = files
         .filter(file => file.type === 'file' && IMAGE_EXTENSIONS.test(file.name))
         .sort((a, b) => a.name.localeCompare(b.name));
 
-      if (images.length === 0) {
+      if (imageFiles.length === 0) {
         if (galleryEmpty) galleryEmpty.hidden = false;
         return;
       }
 
-      images.forEach(file => {
+      // Minden képet be kell tölteni (legalább a méretéig), mielőtt
+      // eldönthetnénk, melyik oszlopba kerüljön - enélkül nem ismernénk
+      // a magasság/szélesség arányát. Egy 10 másodperces időkorlát védi
+      // a galériát attól, hogy egyetlen túl nagy/lassú kép örökre
+      // leblokkolja az összes többi megjelenítését (pl. ha valaki
+      // véletlenül tömörítetlen, több MB-os képet tölt fel).
+      const IMAGE_LOAD_TIMEOUT_MS = 10000;
+
+      const loadImage = (file) => new Promise((resolve) => {
         const img = document.createElement('img');
-        img.src = file.download_url;
         img.alt = altText || '';
         img.loading = 'lazy';
         img.addEventListener('click', () => openLightbox(file.download_url, altText || ''));
-        galleryGrid.appendChild(img);
+
+        const timer = setTimeout(() => resolve(null), IMAGE_LOAD_TIMEOUT_MS);
+        img.addEventListener('load', () => {
+          clearTimeout(timer);
+          resolve({ img, ratio: img.naturalHeight / img.naturalWidth });
+        }, { once: true });
+        img.addEventListener('error', () => {
+          clearTimeout(timer);
+          resolve(null);
+        }, { once: true });
+
+        img.src = file.download_url;
+      });
+
+      Promise.all(imageFiles.map(loadImage)).then((results) => {
+        const loadedImages = results.filter(Boolean);
+        if (loadedImages.length === 0) {
+          if (galleryEmpty) galleryEmpty.hidden = false;
+          return;
+        }
+
+        layoutMasonry(loadedImages);
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => layoutMasonry(loadedImages), 200);
+        });
       });
     })
     .catch(() => {

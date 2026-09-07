@@ -453,21 +453,30 @@ img {
   background: var(--color-bg);
 }
 
-/* Masonry-elrendezés CSS columns-szal: a képek a saját eredeti
-   arányukban jelennek meg, nincs vágás/torzítás. */
+/* Valódi masonry-elrendezés: a script.js JS-ből tölti fel a
+   .gallery-column oszlopokat, mindig a legalacsonyabb oszlopba téve a
+   következő képet (nem a böngésző CSS "columns" oszlop-kiegyenlítése,
+   ami üres lyukakat hagyna a különböző magasságú képek miatt). */
 .gallery-grid {
-  column-count: 4;
-  column-gap: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .gallery-grid img {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.2s ease;
-  break-inside: avoid;
 }
 
 .gallery-grid img:hover {
@@ -755,10 +764,6 @@ img {
    Reszponzivitás
    ========================================================== */
 @media (max-width: 768px) {
-  .gallery-grid {
-    column-count: 2;
-  }
-
   .nav-toggle {
     display: flex;
   }
@@ -815,11 +820,5 @@ img {
 
   .hero-content h1 {
     font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-grid {
-    column-count: 1;
   }
 }
