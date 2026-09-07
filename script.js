@@ -89,6 +89,29 @@ if (langToggle && langModal && langModalClose && langModalBackdrop) {
 const galleryGrid = document.getElementById('galleryGrid');
 const galleryEmpty = document.getElementById('galleryEmpty');
 
+// Lightbox: nagyméretű kép megjelenítése kattintásra
+const galleryLightbox = document.getElementById('galleryLightbox');
+const galleryLightboxImg = document.getElementById('galleryLightboxImg');
+const galleryLightboxClose = document.getElementById('galleryLightboxClose');
+const galleryLightboxBackdrop = document.getElementById('galleryLightboxBackdrop');
+
+const openLightbox = (src, alt) => {
+  if (!galleryLightbox || !galleryLightboxImg) return;
+  galleryLightboxImg.src = src;
+  galleryLightboxImg.alt = alt;
+  galleryLightbox.classList.add('open');
+};
+
+const closeLightbox = () => {
+  if (galleryLightbox) galleryLightbox.classList.remove('open');
+};
+
+if (galleryLightboxClose) galleryLightboxClose.addEventListener('click', closeLightbox);
+if (galleryLightboxBackdrop) galleryLightboxBackdrop.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeLightbox();
+});
+
 if (galleryGrid) {
   const { galleryOwner: owner, galleryRepo: repo, galleryPath: path, galleryAlt: altText } = galleryGrid.dataset;
   const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp|gif)$/i;
@@ -110,6 +133,7 @@ if (galleryGrid) {
         img.src = file.download_url;
         img.alt = altText || '';
         img.loading = 'lazy';
+        img.addEventListener('click', () => openLightbox(file.download_url, altText || ''));
         galleryGrid.appendChild(img);
       });
     })

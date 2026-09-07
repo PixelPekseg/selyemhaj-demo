@@ -22,7 +22,7 @@
   <!-- Cseréld le / töltsd fel a images/favicon.png fájlt a saját logódra/ikonodra -->
   <link rel="icon" type="image/png" href="../images/favicon.png?v=2">
   <link rel="apple-touch-icon" href="../images/favicon.png?v=2">
-  <link rel="stylesheet" href="../style.css?v=8">
+  <link rel="stylesheet" href="../style.css?v=9">
 </head>
 <body>
 
@@ -314,6 +314,13 @@
     </div>
   </div>
 
-  <script src="../script.js?v=11"></script>
+  <!-- Galéria kép nagyítása felugró ablakban (lightbox) -->
+  <div class="lightbox" id="galleryLightbox">
+    <div class="lightbox-backdrop" id="galleryLightboxBackdrop"></div>
+    <button class="lightbox-close" id="galleryLightboxClose" type="button" aria-label="Schließen">&times;</button>
+    <img class="lightbox-img" id="galleryLightboxImg" src="" alt="">
+  </div>
+
+  <script src="../script.js?v=12"></script>
 </body>
 </html>
