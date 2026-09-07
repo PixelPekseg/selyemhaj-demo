@@ -22,7 +22,7 @@
   <!-- Cseréld le / töltsd fel a images/favicon.png fájlt a saját logódra/ikonodra -->
   <link rel="icon" type="image/png" href="../images/favicon.png?v=2">
   <link rel="apple-touch-icon" href="../images/favicon.png?v=2">
-  <link rel="stylesheet" href="../style.css?v=7">
+  <link rel="stylesheet" href="../style.css?v=8">
 </head>
 <body>
 
@@ -43,6 +43,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#hours">Hours</a></li>
           <li><button id="Anywhere_button_nav" class="nav-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/en/categories/218d60ea-d850-452d-99a3-15b8fa4974aa" data-new-tab="false">Booking</button></li>
           <li><a href="#location">Location</a></li>
@@ -153,6 +154,24 @@
         és bekapcsolja.
       -->
       <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
+    </div>
+  </section>
+
+  <!-- Galéria szekció -->
+  <section id="gallery" class="section gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <p class="section-lead">A few photos from our salon and our finished work.</p>
+
+      <div
+        class="gallery-grid"
+        id="galleryGrid"
+        data-gallery-owner="PixelPekseg"
+        data-gallery-repo="selyemhaj-demo"
+        data-gallery-path="gallery"
+        data-gallery-alt="Gallery photo from the salon">
+      </div>
+      <p class="section-lead gallery-empty" id="galleryEmpty" hidden>Gallery photos will be added here soon.</p>
     </div>
   </section>
 
@@ -294,6 +313,6 @@
     </div>
   </div>
 
-  <script src="../script.js?v=10"></script>
+  <script src="../script.js?v=11"></script>
 </body>
 </html>

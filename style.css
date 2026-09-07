@@ -447,10 +447,38 @@ img {
 }
 
 /* ==========================================================
+   Galéria szekció
+   ========================================================== */
+.gallery {
+  background: var(--color-bg);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.gallery-grid img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================================================
    Nyitvatartás szekció
    ========================================================== */
 .hours {
-  background: var(--color-bg);
+  /* bg-alt, mert a Galéria szekció beszúrása után enélkül a Galéria
+     és a Nyitvatartás egyforma hátterű lenne egymás mellett */
+  background: var(--color-bg-alt);
 }
 
 .hours-table {
@@ -598,10 +626,9 @@ img {
    Megközelíthetőség / Google Maps szekció
    ========================================================== */
 .location {
-  /* bg-alt, mert az Időpontfoglalás szekció törlése után enélkül
-     a Nyitvatartás (bg) és a Megközelíthetőség (bg) egyforma
-     hátterű lenne egymás mellett, megtörve a váltakozást */
-  background: var(--color-bg-alt);
+  /* bg, mert a Nyitvatartás mostantól bg-alt (lásd a Galéria szekció
+     beszúrásáról szóló megjegyzést fentebb) */
+  background: var(--color-bg);
 }
 
 .map-wrapper {

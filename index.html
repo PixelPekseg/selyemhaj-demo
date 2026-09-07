@@ -27,7 +27,7 @@
   <!-- Cseréld le / töltsd fel a images/favicon.png fájlt a saját logódra/ikonodra -->
   <link rel="icon" type="image/png" href="images/favicon.png?v=2">
   <link rel="apple-touch-icon" href="images/favicon.png?v=2">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
 
   <!-- Strukturált adat: segít a Google-nek megérteni, hogy ez egy fodrászat
        (megjeleníthet nyitvatartást, címet, telefonszámot közvetlenül a
@@ -74,6 +74,7 @@
           <li><a href="#home">Kezdőlap</a></li>
           <li><a href="#about">Rólunk</a></li>
           <li><a href="#services">Szolgáltatások</a></li>
+          <li><a href="#gallery">Galéria</a></li>
           <li><a href="#hours">Nyitvatartás</a></li>
           <li><button id="Anywhere_button_nav" class="nav-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/categories/e82cf259-3da5-4e70-a3a9-46f890464c55" data-new-tab="false">Időpontfoglalás</button></li>
           <li><a href="#location">Megközelíthetőség</a></li>
@@ -187,6 +188,31 @@
         gomb + az "anywhere-book-now-button" class.
       -->
       <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
+    </div>
+  </section>
+
+  <!-- Galéria szekció -->
+  <!--
+    A képek automatikusan töltődnek be a script.js-ből, a GitHub API
+    segítségével, közvetlenül a gallery/ mappa aktuális tartalmából - a
+    fájlnév nem számít, csak töltsd fel a képet a mappába és pushold.
+    A data-gallery-* attribútumok mondják meg a szkriptnek, melyik
+    repóban/mappában keresse a képeket.
+  -->
+  <section id="gallery" class="section gallery">
+    <div class="container">
+      <h2>Galéria</h2>
+      <p class="section-lead">Néhány kép a szalonunkból és az elkészült munkáinkból.</p>
+
+      <div
+        class="gallery-grid"
+        id="galleryGrid"
+        data-gallery-owner="PixelPekseg"
+        data-gallery-repo="selyemhaj-demo"
+        data-gallery-path="gallery"
+        data-gallery-alt="Galéria kép a szalonból">
+      </div>
+      <p class="section-lead gallery-empty" id="galleryEmpty" hidden>Hamarosan ide kerülnek a galéria képei.</p>
     </div>
   </section>
 
@@ -328,6 +354,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

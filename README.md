@@ -5,12 +5,13 @@ backend vagy adatbázis, GitHub Pages-en közvetlenül publikálható.
 
 ## Fájlstruktúra
 
-- `index.html` – **magyar** verzió (Kezdőlap, Rólunk, Szolgáltatások, Nyitvatartás, Megközelíthetőség – az időpontfoglalás nem külön szekció, hanem gombok a fejlécben/hero-ban/szolgáltatás-kártyákon, lásd lent)
+- `index.html` – **magyar** verzió (Kezdőlap, Rólunk, Szolgáltatások, Galéria, Nyitvatartás, Megközelíthetőség – az időpontfoglalás nem külön szekció, hanem gombok a fejlécben/hero-ban/szolgáltatás-kártyákon, lásd lent)
 - `en/index.html` – **angol** verzió
 - `de/index.html` – **német** verzió
 - `style.css` – közös kinézet mindhárom nyelvi oldalhoz, reszponzív elrendezés
 - `script.js` – közös JS mindhárom oldalhoz: mobil menü, aktuális év, demó naptár widget. A naptár hónapnevei és a kattintásra megjelenő üzenet a fájl elején lévő `TRANSLATIONS` objektumból jönnek, az adott HTML `<html lang="hu|en|de">` attribútuma alapján.
-- `images/` – ide kerülnek a képek, **csak a gyökérben, egy helyen** (lásd lent, milyen fájlneveket várnak a HTML fájlok). Az `en/` és `de/` oldalak `../images/...` relatív úttal hivatkoznak ugyanide, nem kell duplikálni a képeket.
+- `images/` – ide kerülnek a fő oldal-képek (hero, favicon, rólunk), **csak a gyökérben, egy helyen** (lásd lent, milyen fájlneveket várnak a HTML fájlok). Az `en/` és `de/` oldalak `../images/...` relatív úttal hivatkoznak ugyanide, nem kell duplikálni a képeket.
+- `gallery/` – a Galéria szekció képei, szintén csak a gyökérben, egy helyen (lásd lent)
 - `robots.txt`, `sitemap.xml` – Google-kereshetőséghez (lásd a "SEO / Google-kereshetőség" szekciót lent)
 
 ### Többnyelvűség – fontos tudnivaló
@@ -93,10 +94,10 @@ vagy később szerepelnek, mint maga a script tag:
 
 A szekciók háttere felváltva `var(--color-bg)` (krém) és
 `var(--color-bg-alt)` (arany-krém) – jelenleg: Rólunk (bg) → Szolgáltatások
-(bg-alt) → Nyitvatartás (bg) → Megközelíthetőség (bg-alt). Ha törölsz vagy
-beszúrsz egy szekciót, ellenőrizd, hogy utána sem lesz **két egymás melletti
-szekciónak ugyanaz a háttere** – ha igen, cseréld ki a `style.css`-ben az
-érintett szekció `background` értékét a másikra.
+(bg-alt) → Galéria (bg) → Nyitvatartás (bg-alt) → Megközelíthetőség (bg). Ha
+törölsz vagy beszúrsz egy szekciót, ellenőrizd, hogy utána sem lesz **két
+egymás melletti szekciónak ugyanaz a háttere** – ha igen, cseréld ki a
+`style.css`-ben az érintett szekció `background` értékét a másikra.
 
 ### Nyelvhelyesség: külön szolgáltatás-kategória minden nyelvhez
 
@@ -140,6 +141,37 @@ Töltsd fel ezekkel a nevekkel a saját fotóidat (vagy módosítsd a HTML-ben a
 - `images/hero.jpg` – nagy header/hero kép a főoldalon
 - `images/rolunk.jpg` – kép a Rólunk szekcióhoz (pl. a szalon vagy a csapat)
 - `images/favicon.png` – kis ikon a böngésző füléhez (favicon), négyzetes kép ajánlott (pl. 512×512 px)
+
+## Galéria
+
+A `gallery/` mappa (a gyökérben, az `images/` mellett, külön) a Galéria
+szekció képeinek van fenntartva. **A fájlnév itt nem számít** – a
+`script.js` a GitHub API-n keresztül minden alkalommal lekéri, milyen
+képek vannak éppen a `gallery/` mappában, és automatikusan megjeleníti
+mindet. Ez azt jelenti:
+
+- **Nincs HTML-szerkesztés** – csak töltsd fel a képet a `gallery/`
+  mappába (bármilyen néven, `.jpg`/`.jpeg`/`.png`/`.webp`/`.gif`
+  kiterjesztéssel), commitold és pushold, és megjelenik mindhárom nyelvi
+  oldalon
+- A képek **ábécésorrendbe** kerülnek a fájlnevük alapján – ha fontos a
+  sorrend, nevezd el őket pl. `01-...jpg`, `02-...jpg` formában
+- Ha nincs egy kép sem a mappában (vagy nem sikerül elérni a GitHub
+  API-t), egy "Hamarosan ide kerülnek a galéria képei" üzenet jelenik meg
+  helyette
+
+**Technikai háttér, csak ha érdekel:** a `<div class="gallery-grid">`
+elem `data-gallery-owner`/`data-gallery-repo`/`data-gallery-path`
+attribútumai mondják meg a szkriptnek, melyik GitHub repóban/mappában
+keresse a képeket – ezt kellene átírni, ha ezt a sablont egy másik GitHub
+felhasználó/repó alá másolod. Mivel ez egy publikus, nem hitelesített API
+hívás, csak **publikus repóknál** működik (a GitHub Pages ingyenes
+csomagja amúgy is publikus repót igényel), és nagyon ritkán, nagy
+látogatottságnál elméletileg elérheti a GitHub percenkénti API-limitjét –
+egy kisvállalkozás forgalmánál ez a gyakorlatban nem jelent problémát.
+
+Mint a többi képnél: töltsd fel tömörítve (nagyjából 1500–2000px szélesség
+elég, ne legyen több MB-os egy kép sem), különben lassítja az oldalt.
 
 ## Helyi megnyitás
 

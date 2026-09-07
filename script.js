@@ -75,6 +75,50 @@ if (langToggle && langModal && langModalClose && langModalBackdrop) {
 }
 
 // ==========================================================
+// Galéria – automatikus képbetöltés a gallery/ mappából
+// A fájlnév szándékosan nem számít: a GitHub API-n keresztül lekérjük a
+// gallery/ mappa aktuális, élő tartalmát (mindig a main branch szerint),
+// és minden képfájlhoz (jpg/jpeg/png/webp/gif) generálunk egy <img>
+// elemet. Így elég csak feltölteni egy képet a mappába és pusholni,
+// a HTML-t nem kell szerkeszteni. A repó nevét/mappát a HTML-ben lévő
+// data-gallery-* attribútumok mondják meg (lásd index.html), hogy ez a
+// kód más kliens-repóban is újrahasználható legyen.
+// A képek ábécésorrendbe kerülnek a fájlnév alapján - ha fontos a
+// sorrend, nevezd el a fájlokat pl. "01-...jpg", "02-...jpg" formában.
+// ==========================================================
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryEmpty = document.getElementById('galleryEmpty');
+
+if (galleryGrid) {
+  const { galleryOwner: owner, galleryRepo: repo, galleryPath: path, galleryAlt: altText } = galleryGrid.dataset;
+  const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp|gif)$/i;
+
+  fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`)
+    .then(res => (res.ok ? res.json() : Promise.reject(new Error('GitHub API error'))))
+    .then(files => {
+      const images = files
+        .filter(file => file.type === 'file' && IMAGE_EXTENSIONS.test(file.name))
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+      if (images.length === 0) {
+        if (galleryEmpty) galleryEmpty.hidden = false;
+        return;
+      }
+
+      images.forEach(file => {
+        const img = document.createElement('img');
+        img.src = file.download_url;
+        img.alt = altText || '';
+        img.loading = 'lazy';
+        galleryGrid.appendChild(img);
+      });
+    })
+    .catch(() => {
+      if (galleryEmpty) galleryEmpty.hidden = false;
+    });
+}
+
+// ==========================================================
 // Aktuális év a láblécben
 // ==========================================================
 document.getElementById('year').textContent = new Date().getFullYear();
