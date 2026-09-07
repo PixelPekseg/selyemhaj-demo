@@ -4,10 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selyemhaj Fodrászat</title>
+  <meta name="description" content="Selyemhaj Fodrászat – hajvágás, festés, melírozás és alkalmi frizurák Budapesten. Foglalj időpontot online pár kattintással.">
+
+  <!--
+    FONTOS: amint megvan a saját domain neved, mindhárom nyelvi fájlban
+    (index.html, en/index.html, de/index.html) cseréld le a
+    "https://www.YOUR-DOMAIN-HERE.com" placeholdert a valódi domainedre
+    (a canonical, hreflang, Open Graph linkeknél és a sitemap.xml-ben is).
+  -->
+  <link rel="canonical" href="https://www.YOUR-DOMAIN-HERE.com/">
+  <link rel="alternate" hreflang="hu" href="https://www.YOUR-DOMAIN-HERE.com/">
+  <link rel="alternate" hreflang="en" href="https://www.YOUR-DOMAIN-HERE.com/en/">
+  <link rel="alternate" hreflang="de" href="https://www.YOUR-DOMAIN-HERE.com/de/">
+  <link rel="alternate" hreflang="x-default" href="https://www.YOUR-DOMAIN-HERE.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Selyemhaj Fodrászat">
+  <meta property="og:description" content="Hajvágás, festés, melírozás és alkalmi frizurák Budapesten. Foglalj időpontot online.">
+  <meta property="og:url" content="https://www.YOUR-DOMAIN-HERE.com/">
+  <meta property="og:locale" content="hu_HU">
+
   <!-- Cseréld le / töltsd fel a images/favicon.png fájlt a saját logódra/ikonodra -->
   <link rel="icon" type="image/png" href="images/favicon.png?v=2">
   <link rel="apple-touch-icon" href="images/favicon.png?v=2">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=7">
+
+  <!-- Strukturált adat: segít a Google-nek megérteni, hogy ez egy fodrászat
+       (megjeleníthet nyitvatartást, címet, telefonszámot közvetlenül a
+       keresési találatnál). Frissítsd a "url", "telephone" és "address"
+       mezőket, ha változik a domain/telefonszám/cím. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Selyemhaj Fodrászat",
+    "url": "https://www.YOUR-DOMAIN-HERE.com/",
+    "telephone": "+36205184355",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kossuth Lajos tér 1-3",
+      "postalCode": "1055",
+      "addressLocality": "Budapest",
+      "addressCountry": "HU"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday"], "opens": "09:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday", "Friday"], "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -29,7 +75,7 @@
           <li><a href="#about">Rólunk</a></li>
           <li><a href="#services">Szolgáltatások</a></li>
           <li><a href="#hours">Nyitvatartás</a></li>
-          <li><a href="#booking">Időpontfoglalás</a></li>
+          <li><button id="Anywhere_button_nav" class="nav-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/categories/e82cf259-3da5-4e70-a3a9-46f890464c55" data-new-tab="false">Időpontfoglalás</button></li>
           <li><a href="#location">Megközelíthetőség</a></li>
         </ul>
 
@@ -51,7 +97,7 @@
       <div class="container hero-content">
         <h1>Selyemhaj Fodrászat</h1>
         <p>Ahol a hajad új fényt kap</p>
-        <a href="#booking" class="btn btn-primary">Időpontot foglalok</a>
+        <button id="Anywhere_button_hero" class="btn btn-primary anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/categories/e82cf259-3da5-4e70-a3a9-46f890464c55" data-new-tab="false">Időpontot foglalok</button>
       </div>
     </div>
     <!-- Cseréld le a images/hero.jpg fájlt a saját header/hero képedre -->
@@ -98,32 +144,49 @@
           <h3>Női hajvágás</h3>
           <p class="service-desc">Konzultáció, mosás és vágás egyéni stílus alapján.</p>
           <p class="service-meta"><span class="price">6 500 Ft</span> · <span class="duration">45 perc</span></p>
+          <button id="Anywhere_button_noi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/services/899ea6cc-a450-42a4-a2b3-838bb39e4fd9" data-new-tab="false">Foglalás</button>
         </div>
 
         <div class="service-card">
           <h3>Férfi hajvágás</h3>
           <p class="service-desc">Klasszikus vagy modern férfi hajvágás, szükség esetén szakálligazítással.</p>
           <p class="service-meta"><span class="price">4 000 Ft</span> · <span class="duration">30 perc</span></p>
+          <button id="Anywhere_button_ferfi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/services/9b51a99e-cfee-4a39-af3b-9b27ce302509" data-new-tab="false">Foglalás</button>
         </div>
 
         <div class="service-card">
           <h3>Festés / Melírozás</h3>
           <p class="service-desc">Tő- vagy teljes festés, melírozás, árnyalatválasztással.</p>
           <p class="service-meta"><span class="price">12 000 Ft-tól</span> · <span class="duration">90–120 perc</span></p>
+          <button id="Anywhere_button_festes" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/services/206da166-b41d-44d3-8679-a931215f6b1e" data-new-tab="false">Foglalás</button>
         </div>
 
         <div class="service-card">
           <h3>Mosás + Szárítás</h3>
           <p class="service-desc">Frissítő hajmosás és profi eszközökkel történő szárítás, formázás.</p>
           <p class="service-meta"><span class="price">3 500 Ft</span> · <span class="duration">30 perc</span></p>
+          <button id="Anywhere_button_mosas" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/services/f67a0c3a-0902-4061-acee-2f662f4a7e53" data-new-tab="false">Foglalás</button>
         </div>
 
         <div class="service-card">
           <h3>Esküvői / Alkalmi frizura</h3>
           <p class="service-desc">Egyedi, tartós frizura különleges alkalmakra, próbafrizurával.</p>
           <p class="service-meta"><span class="price">15 000 Ft-tól</span> · <span class="duration">60–90 perc</span></p>
+          <button id="Anywhere_button_eskuvoi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/hu/services/5bdfcde7-a7c0-44f0-a943-bbf31e46f1bf" data-new-tab="false">Foglalás</button>
         </div>
       </div>
+
+      <!--
+        Setmore "Book Now" widget szkriptje – egyszer töltjük be az egész
+        oldalra. A fejlécben (nav + hero gomb) lévő foglalás-gombok korábban
+        a HTML-ben vannak, de mivel ez a szkript nem async/defer, csak
+        akkor fut le, amikor a böngésző idáig ért a beolvasásban – vagyis a
+        fentebbi gombok már mind a DOM részei, a szkript ezeket is megtalálja
+        és bekapcsolja. Ha új "Foglalás" gombot adsz hozzá, ezt a szkriptet
+        nem kell megint beszúrnod, elég a data-booking-url-lel ellátott
+        gomb + az "anywhere-book-now-button" class.
+      -->
+      <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
     </div>
   </section>
 
@@ -142,56 +205,6 @@
           <tr><td>Vasárnap</td><td class="closed">Zárva</td></tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- Időpontfoglalás szekció: élő Cal.com beágyazott widget -->
-  <section id="booking" class="section booking">
-    <div class="container">
-      <h2>Időpontfoglalás</h2>
-      <p class="section-lead">
-        Válaszd ki, milyen szolgáltatásra szeretnél időpontot foglalni, majd
-        válassz egy neked megfelelő napot és időpontot a naptárban.
-      </p>
-
-      <!--
-        Cal.com élő foglalási widgetek. Új szolgáltatás hozzáadásakor:
-        1. Hozz létre egy új event type-ot a Cal.com-on,
-        2. Kérd le hozzá az "Inline Embed" kódot,
-        3. Adj hozzá egy új <button class="cal-tab"> gombot itt lent,
-        4. Másold be a kapott <div>+<script> párost a többi mellé.
-      -->
-      <div class="cal-tabs">
-        <button class="cal-tab active" data-target="my-cal-inline-noi-hajvagas" type="button">Női hajvágás</button>
-        <button class="cal-tab" data-target="my-cal-inline-ferfi-hajvagas" type="button">Férfi hajvágás</button>
-      </div>
-
-      <div class="cal-embed-wrapper">
-        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-noi-hajvagas" class="service-cal active"></div>
-        <div style="width:100%;height:100%;overflow:scroll;display:none" id="my-cal-inline-ferfi-hajvagas" class="service-cal"></div>
-      </div>
-
-      <script type="text/javascript">
-        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-
-        Cal("init", "noi-hajvagas", {origin:"https://app.cal.com"});
-        Cal.config = Cal.config || {};
-        Cal.config.forwardQueryParams = true;
-        Cal.ns["noi-hajvagas"]("inline", {
-          elementOrSelector:"#my-cal-inline-noi-hajvagas",
-          config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-          calLink: "selyemhaj/noi-hajvagas",
-        });
-        Cal.ns["noi-hajvagas"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-
-        Cal("init", "ferfi-hajvagas", {origin:"https://app.cal.com"});
-        Cal.ns["ferfi-hajvagas"]("inline", {
-          elementOrSelector:"#my-cal-inline-ferfi-hajvagas",
-          config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-          calLink: "selyemhaj/ferfi-hajvagas",
-        });
-        Cal.ns["ferfi-hajvagas"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      </script>
     </div>
   </section>
 
@@ -315,6 +328,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

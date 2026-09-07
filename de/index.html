@@ -4,10 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selyemhaj Fodrászat – Friseursalon</title>
+  <meta name="description" content="Selyemhaj Fodrászat Friseursalon in Budapest – Haarschnitt, Färben, Strähnchen und Festfrisuren. Buchen Sie Ihren Termin online in wenigen Klicks.">
+
+  <!-- FONTOS: cseréld le a placeholdert a valódi domainedre (lásd index.html) -->
+  <link rel="canonical" href="https://www.YOUR-DOMAIN-HERE.com/de/">
+  <link rel="alternate" hreflang="hu" href="https://www.YOUR-DOMAIN-HERE.com/">
+  <link rel="alternate" hreflang="en" href="https://www.YOUR-DOMAIN-HERE.com/en/">
+  <link rel="alternate" hreflang="de" href="https://www.YOUR-DOMAIN-HERE.com/de/">
+  <link rel="alternate" hreflang="x-default" href="https://www.YOUR-DOMAIN-HERE.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Selyemhaj Fodrászat – Friseursalon">
+  <meta property="og:description" content="Haarschnitt, Färben, Strähnchen und Festfrisuren in Budapest. Termin online buchen.">
+  <meta property="og:url" content="https://www.YOUR-DOMAIN-HERE.com/de/">
+  <meta property="og:locale" content="de_DE">
+
   <!-- Cseréld le / töltsd fel a images/favicon.png fájlt a saját logódra/ikonodra -->
   <link rel="icon" type="image/png" href="../images/favicon.png?v=2">
   <link rel="apple-touch-icon" href="../images/favicon.png?v=2">
-  <link rel="stylesheet" href="../style.css?v=4">
+  <link rel="stylesheet" href="../style.css?v=7">
 </head>
 <body>
 
@@ -29,7 +44,7 @@
           <li><a href="#about">Über uns</a></li>
           <li><a href="#services">Leistungen</a></li>
           <li><a href="#hours">Öffnungszeiten</a></li>
-          <li><a href="#booking">Terminbuchung</a></li>
+          <li><button id="Anywhere_button_nav" class="nav-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/categories/9aa8c433-a351-4e74-a98d-41e7bb8902cd" data-new-tab="false">Terminbuchung</button></li>
           <li><a href="#location">Anfahrt</a></li>
         </ul>
 
@@ -51,7 +66,7 @@
       <div class="container hero-content">
         <h1>Selyemhaj Fodrászat</h1>
         <p>Wo Ihr Haar neuen Glanz bekommt</p>
-        <a href="#booking" class="btn btn-primary">Termin buchen</a>
+        <button id="Anywhere_button_hero" class="btn btn-primary anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/categories/9aa8c433-a351-4e74-a98d-41e7bb8902cd" data-new-tab="false">Termin buchen</button>
       </div>
     </div>
     <!-- Cseréld le a images/hero.jpg fájlt a saját header/hero képedre -->
@@ -98,32 +113,47 @@
           <h3>Damenhaarschnitt</h3>
           <p class="service-desc">Beratung, Waschen und Schneiden nach individuellem Stil.</p>
           <p class="service-meta"><span class="price">6.500 HUF</span> · <span class="duration">45 Min.</span></p>
+          <button id="Anywhere_button_noi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/services/fdbf382f-be57-4022-a970-66e81f69f26f" data-new-tab="false">Buchen</button>
         </div>
 
         <div class="service-card">
           <h3>Herrenhaarschnitt</h3>
           <p class="service-desc">Klassischer oder moderner Herrenhaarschnitt, bei Bedarf mit Bartkorrektur.</p>
           <p class="service-meta"><span class="price">4.000 HUF</span> · <span class="duration">30 Min.</span></p>
+          <button id="Anywhere_button_ferfi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/services/8d448527-9686-4a3a-828c-df9a48568f28" data-new-tab="false">Buchen</button>
         </div>
 
         <div class="service-card">
           <h3>Färben / Strähnchen</h3>
           <p class="service-desc">Ansatz- oder Komplettfärbung, Strähnchen, mit Farbberatung.</p>
           <p class="service-meta"><span class="price">Ab 12.000 HUF</span> · <span class="duration">90–120 Min.</span></p>
+          <button id="Anywhere_button_festes" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/services/842be8ae-e89b-42cf-a267-a71f7c0b2a82" data-new-tab="false">Buchen</button>
         </div>
 
         <div class="service-card">
           <h3>Waschen + Föhnen</h3>
           <p class="service-desc">Erfrischende Haarwäsche und professionelles Styling.</p>
           <p class="service-meta"><span class="price">3.500 HUF</span> · <span class="duration">30 Min.</span></p>
+          <button id="Anywhere_button_mosas" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/services/36f37407-e9f2-48e6-be9d-497622913f2c" data-new-tab="false">Buchen</button>
         </div>
 
         <div class="service-card">
           <h3>Hochzeits- / Festfrisur</h3>
           <p class="service-desc">Individuelle, langhaltende Frisur für besondere Anlässe, inkl. Probefrisur.</p>
           <p class="service-meta"><span class="price">Ab 15.000 HUF</span> · <span class="duration">60–90 Min.</span></p>
+          <button id="Anywhere_button_eskuvoi" class="service-book-btn anywhere-book-now-button" type="button" data-booking-url="https://kissacoe.setmore.com/de/services/cbaa1b2f-a756-4713-8c84-7c4e7b02aca4" data-new-tab="false">Buchen</button>
         </div>
       </div>
+
+      <!--
+        Setmore "Book Now" widget szkriptje – egyszer töltjük be az egész
+        oldalra. A fejlécben (nav + hero gomb) lévő foglalás-gombok korábban
+        vannak a HTML-ben, de mivel ez a szkript nem async/defer, csak
+        akkor fut le, amikor a böngésző idáig ért a beolvasásban – vagyis a
+        fentebbi gombok már mind a DOM részei, a szkript ezeket is megtalálja
+        és bekapcsolja.
+      -->
+      <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
     </div>
   </section>
 
@@ -142,56 +172,6 @@
           <tr><td>Sonntag</td><td class="closed">Geschlossen</td></tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- Időpontfoglalás szekció: élő Cal.com beágyazott widget -->
-  <section id="booking" class="section booking">
-    <div class="container">
-      <h2>Terminbuchung</h2>
-      <p class="section-lead">
-        Wähle aus, für welche Leistung du einen Termin buchen möchtest, und
-        wähle dann im Kalender einen passenden Tag und Uhrzeit.
-      </p>
-
-      <!--
-        Cal.com élő foglalási widgetek. Új szolgáltatás hozzáadásakor:
-        1. Hozz létre egy új event type-ot a Cal.com-on,
-        2. Kérd le hozzá az "Inline Embed" kódot,
-        3. Adj hozzá egy új <button class="cal-tab"> gombot itt lent,
-        4. Másold be a kapott <div>+<script> párost a többi mellé.
-      -->
-      <div class="cal-tabs">
-        <button class="cal-tab active" data-target="my-cal-inline-noi-hajvagas" type="button">Damenhaarschnitt</button>
-        <button class="cal-tab" data-target="my-cal-inline-ferfi-hajvagas" type="button">Herrenhaarschnitt</button>
-      </div>
-
-      <div class="cal-embed-wrapper">
-        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-noi-hajvagas" class="service-cal active"></div>
-        <div style="width:100%;height:100%;overflow:scroll;display:none" id="my-cal-inline-ferfi-hajvagas" class="service-cal"></div>
-      </div>
-
-      <script type="text/javascript">
-        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-
-        Cal("init", "noi-hajvagas", {origin:"https://app.cal.com"});
-        Cal.config = Cal.config || {};
-        Cal.config.forwardQueryParams = true;
-        Cal.ns["noi-hajvagas"]("inline", {
-          elementOrSelector:"#my-cal-inline-noi-hajvagas",
-          config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-          calLink: "selyemhaj/noi-hajvagas",
-        });
-        Cal.ns["noi-hajvagas"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-
-        Cal("init", "ferfi-hajvagas", {origin:"https://app.cal.com"});
-        Cal.ns["ferfi-hajvagas"]("inline", {
-          elementOrSelector:"#my-cal-inline-ferfi-hajvagas",
-          config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-          calLink: "selyemhaj/ferfi-hajvagas",
-        });
-        Cal.ns["ferfi-hajvagas"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      </script>
     </div>
   </section>
 
@@ -315,6 +295,6 @@
     </div>
   </div>
 
-  <script src="../script.js?v=6"></script>
+  <script src="../script.js?v=10"></script>
 </body>
 </html>

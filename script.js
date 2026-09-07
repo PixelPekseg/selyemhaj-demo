@@ -8,9 +8,36 @@ navToggle.addEventListener('click', () => {
   mainNav.classList.toggle('open');
 });
 
-// Menü bezárása, ha egy linkre kattintunk (mobil nézetben)
-mainNav.querySelectorAll('a').forEach(link => {
+// Menü bezárása, ha egy linkre vagy a foglalás gombra kattintunk (mobil nézetben)
+mainNav.querySelectorAll('a, .nav-book-btn').forEach(link => {
   link.addEventListener('click', () => mainNav.classList.remove('open'));
+});
+
+// ==========================================================
+// Setmore "Book Now" widget – helyes szolgáltatásra váltás
+// A Setmore saját szkriptje csak az ELSŐ valaha megnyitott gomb URL-jét
+// használja: a felugró ablakot (és benne az iframe-et) csak egyszer hozza
+// létre, utána minden gombnál csak újra megjeleníti ugyanazt, a régi
+// tartalommal – ez a Setmore widget saját korlátja/hibája, nem javítható
+// az ő kódjuk módosítása nélkül.
+// Megoldás: NEM nyúlunk a Setmore saját overlay/box elemeihez (azok
+// eltávolítása elrontaná a widget belső állapotát, és utána meg sem
+// nyílna újra) – ehelyett minden kattintáskor egyszerűen frissítjük a már
+// létrehozott iframe "src" attribútumát a kattintott gomb saját
+// URL-jére. Ez egy teljesen új navigációt indít az iframe-ben, ami
+// automatikusan törli a korábban kiválasztott szolgáltatást/időpontot is.
+document.querySelectorAll('.anywhere-book-now-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const url = btn.dataset.bookingUrl;
+    const iframe = document.querySelector('.anywhere-iframe');
+    if (iframe && iframe.getAttribute('src') !== url) {
+      const box = iframe.closest('.anywhere-box');
+      const loader = box ? box.querySelector('.anywhere-loader') : null;
+      if (loader) loader.style.display = 'block';
+      iframe.style.display = 'none';
+      iframe.src = url;
+    }
+  });
 });
 
 // ==========================================================
@@ -169,27 +196,3 @@ if (calendarTitle && calendarGrid && bookingMessage && prevMonthBtn && nextMonth
   renderCalendar(viewYear, viewMonth);
 }
 
-// ==========================================================
-// Cal.com foglalási fülek (Időpontfoglalás szekció)
-// Több beágyazott Cal.com widget közül lehet választani szolgáltatásonként.
-// ==========================================================
-const calTabs = document.querySelectorAll('.cal-tab');
-
-if (calTabs.length) {
-  calTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      calTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      document.querySelectorAll('.service-cal').forEach(embed => {
-        const isActive = embed.id === tab.dataset.target;
-        embed.classList.toggle('active', isActive);
-        // Inline stílussal biztosítjuk a váltást, mert a Cal.com saját
-        // beágyazó szkriptje "cal-embed" osztályt is használ a belső
-        // elemein, ami CSS-ütközést okozna egy sima osztály-alapú
-        // display:none/block szabállyal.
-        embed.style.display = isActive ? 'block' : 'none';
-      });
-    });
-  });
-}
