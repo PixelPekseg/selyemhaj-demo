@@ -169,10 +169,16 @@ if (galleryGrid) {
       // véletlenül tömörítetlen, több MB-os képet tölt fel).
       const IMAGE_LOAD_TIMEOUT_MS = 10000;
 
+      // FONTOS: nincs itt "loading = lazy" - amíg a kép nincs a DOM-hoz
+      // csatolva, a böngésző nem tudja eldönteni, hogy közel van-e a
+      // látható területhez, ezért egy lusta betöltésű, még nem
+      // csatolt képnél a "load" esemény sosem sülne el. Mivel a kép
+      // méretét amúgy is előre be kell töltenünk a masonry-elrendezés
+      // kiszámításához, ez itt nem is okoz problémát (a képek amúgy
+      // is kicsik, tömörítettek).
       const loadImage = (file) => new Promise((resolve) => {
         const img = document.createElement('img');
         img.alt = altText || '';
-        img.loading = 'lazy';
         img.addEventListener('click', () => openLightbox(file.download_url, altText || ''));
 
         const timer = setTimeout(() => resolve(null), IMAGE_LOAD_TIMEOUT_MS);
